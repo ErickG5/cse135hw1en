@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const year = new Date().getFullYear();
     const footer = document.createElement("p");
-    footer.textContent = `© ${year} CSE 135`;
+    footer.textContent = `${year} CSE 135`;
     footer.style.marginTop = "40px";
     footer.style.color = "#888";
 
