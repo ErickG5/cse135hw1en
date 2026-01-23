@@ -40,3 +40,22 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.profile {
+    max-width: 800px;
+    margin: auto;
+}
+
+.profile header h1 {
+    margin-bottom: 5px;
+}
+
+.profile .subtitle {
+    margin-top: 0;
+    font-size: 18px;
+    color: #666;
+}
+
+.profile section {
+    margin-bottom: 25px;
+}
