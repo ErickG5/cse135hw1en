@@ -5,3 +5,6 @@ user: noe Password: narguello2
 
 Compression:
 After deploying the compression it was noticed that in the network tab of DevTools a new response header was seen. This being content-encoding: gzip which indicates to us that the fiels were compressed before being sent to the browser. This in turn improved performance. 
+
+Server:
+We saw that Apache generates the header for server internally and does not allow a simple rename to be executed. To combat this we had to employ a reverse proxy. This ensured that when we rewrote the server response header we would be sure that it would display in browser responses. 
