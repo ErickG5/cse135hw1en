@@ -5,45 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSE 135 Winter 2026</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <table width="100%">
-        <tr>
-            <td width="60%" valign="top">
-                <h1 style="margin-bottom: 5px;">CSE 135</h1>
-                <p style="margin-top: 0; font-size: 18px; color: #666;">Winter 2026</p>
-            </td>
-            <td width="40%" valign="top">
-                <h3 style="margin-top: 25px; margin-bottom: 5px;">Team Members</h3>
-                <ul style="margin-top: 0;">
-                    <li><a href="/members/erick.html">Erick Garcia</a></li>
-                    <li><a href="/members/noe.html">Noe Arguello Soto</a></li>
-                </ul>
-            </td>
-        </tr>  
-        <tr>
-            <td colspan="2"> 
-                <hr>
-            </td>
-        </tr>
-        <tr>
-            <td width="60%" valign="top">
-                <h3>Homework 1</h3> 
-                <ul>
-                    <li><a href="/hello.php">PHP</a></li>
-                    <li><a href="/node">Node</a></li>
-                    <li><a href="/hw1/report.html">Analytics</a></li>
-                </ul>
-                
-                <h3>Homework 2</h3>
-                <p>TBD</p>
-                
-                <h3>Analytics App</h3>
-                <p>TBD</p>
-            </td>
-            <td width="40%" valign="top">
-            </td>
-        </tr>
-    </table>
+
+    <div class="container">
+        <div class="left">
+            <h1>CSE 135</h1>
+            <p class="subtitle">Winter 2026</p>
+        </div>
+
+        <div class="right">
+            <h2>Team Members</h2>
+            <ul>
+                <li><a href="/members/erick.html">Erick Garcia</a></li>
+                <li><a href="/members/noe.html">Noe Arguello Soto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="content">
+        <section>
+            <h2>Homework 1</h2>
+            <ul>
+                <li><a href="/hello.php">PHP</a></li>
+                <li><a href="/node">Node</a></li>
+                <li><a href="/hw1/report.html">Analytics</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Homework 2</h2>
+            <p>TBD</p>
+        </section>
+    </div>
+
+    <!-- External JS -->
+    <script src="script.js"></script>
 </body>
-</html>>
+</html>
