@@ -1,2 +1,4 @@
 # cse135hw1en
-website repo
+
+user: erick Password: Sentros2@
+user: noe Password: narguello2
