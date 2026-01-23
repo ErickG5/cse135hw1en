@@ -1,1 +1,2 @@
-robots file
+User-agent: *
+Disallow:
