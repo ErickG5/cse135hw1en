@@ -59,3 +59,9 @@ a:hover {
 .profile section {
     margin-bottom: 25px;
 }
+
+.hw2-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
