@@ -61,7 +61,34 @@ a:hover {
 }
 
 .hw2-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
+  display: grid;
+  gap: 1rem;
+
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: start;
+}
+
+.lang {
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: #f3f3f3;
+}
+
+.lang h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.lang ul {
+  margin: 0;
+  padding-left: 1.1rem; 
+}
+
+.lang li {
+  margin: 0.2rem 0;
+}
+
+.lang a {
+  display: inline-block;
+  padding: 0.15rem 0;
 }
