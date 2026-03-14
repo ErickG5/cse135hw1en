@@ -2,3 +2,6 @@
 reporting.cse135hw1en.site/sessions/
 collector.cse135hw1en.site/node_modules/
 reporting.cse135hw1en.site/node_modules/
+
+__MACOSX/
+._*
