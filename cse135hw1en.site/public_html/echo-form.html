@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Echo Form Tester</title>
+
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G3WM8DBKPE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G3WM8DBKPE');
+  </script>
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://cse135hw1ensite.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='https://cdn.matomo.cloud/cse135hw1ensite.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+<script src="https://cdn.logr-in.com/LogRocket.min.js" crossorigin="anonymous"></script>
+<script>window.LogRocket && window.LogRocket.init('w8qefj/cse135hw1en');</script>
+
+
+
+</head>
+<body>
+  <h1>Echo Form Tester</h1>
+
+  <p>
+    Use this page to send requests to the different <b>general echo</b> endpoints across languages.
+    With JavaScript ON, you can use GET/POST/PUT/DELETE and urlencoded/JSON encodings.
+  </p>
+
+<p>
+  <a href="/index.html"
+     style="
+       display: inline-block;
+       padding: 8px 14px;
+       background-color: #444;
+       color: white;
+       text-decoration: none;
+       border-radius: 4px;
+       font-weight: bold;
+     ">
+    ← Return to Homepage
+  </a>
+</p>
+
+  <noscript>
+    <p><b>JavaScript is OFF.</b> Reduced mode below supports only GET/POST with standard form submission.</p>
+  </noscript>
+
+  <hr />
+
+  <!-- Reduced mode (NO JS): GET + POST only, works across languages -->
+  <h2>Reduced mode (works without JavaScript)</h2>
+  <p>
+    Without JS, HTML forms can only do <b>GET</b> and <b>POST</b> and typically only
+    <b>application/x-www-form-urlencoded</b>. Choose a language endpoint below.
+  </p>
+
+  <!-- GET form -->
+<h3>GET (no JS)</h3>
+<form method="get" action="/cgi-bin/perl-get-echo.pl" id="noJsGetForm">
+  <label>
+    Endpoint:
+    <select onchange="document.getElementById('noJsGetForm').action=this.value">
+      <option value="/cgi-bin/perl-get-echo.pl" selected>Perl GET echo</option>
+      <option value="/cgi-bin/python/python-get-echo.py">Python GET echo</option>
+      <option value="/cgi-bin/c/c-get-echo">C GET echo</option>
+      <option value="/jsp/jsp-get-echo.jsp">JSP GET echo</option>
+    </select>
+  </label>
+
+	<br><br>
+
+  <label>field1: <input name="field1" value="hello"></label><br><br>
+  <label>field2: <input name="field2" value="world"></label><br><br>
+
+  <button type="submit">Submit GET</button>
+</form>
+
+  <!-- POST form -->
+<h3>POST (no JS)</h3>
+<form method="post" action="/cgi-bin/perl-post-echo.pl">
+  <label>
+    Endpoint:
+    <select onchange="this.form.action=this.value">
+      <option value="/cgi-bin/perl-post-echo.pl" selected>Perl POST echo</option>
+      <option value="/cgi-bin/python/python-post-echo.py">Python POST echo</option>
+      <option value="/cgi-bin/c/c-post-echo">C POST echo</option>
+      <option value="/jsp/jsp-post-echo.jsp">JSP POST echo</option>
+    </select>
+  </label>
+
+  <br><br>
+
+  <label>field1: <input name="field1" value="hello"></label><br><br>
+  <label>field2: <input name="field2" value="world"></label><br><br>
+
+  <button type="submit">Submit POST</button>
+</form>
+
+  <!-- Full mode (JS ON) -->
+  <h2>Full mode (JavaScript ON)</h2>
+
+  <form id="echoForm">
+    <label>
+      Language:
+      <select id="language">
+        <option value="perl">Perl</option>
+        <option value="python">Python</option>
+        <option value="c">C</option>
+        <option value="jsp">JSP</option>
+      </select>
+    </label>
+
+    <br /><br />
+
+    <label>
+      Method:
+      <select id="method">
+        <option>GET</option>
+        <option>POST</option>
+        <option>PUT</option>
+        <option>DELETE</option>
+      </select>
+    </label>
+
+    <br /><br />
+
+    <label>
+      Encoding:
+      <select id="encoding">
+        <option value="application/x-www-form-urlencoded">x-www-form-urlencoded</option>
+        <option value="application/json">application/json</option>
+      </select>
+    </label>
+
+    <br /><br />
+
+    <fieldset>
+      <legend>Fields</legend>
+      <label>field1: <input id="field1" value="hello" /></label><br /><br />
+      <label>field2: <input id="field2" value="world" /></label><br /><br />
+    </fieldset>
+
+    <button type="submit">Send Request</button>
+  </form>
+
+  <h3>Resolved endpoint</h3>
+  <p id="resolvedEndpoint">(choose a language)</p>
+
+  <h3>Response</h3>
+  <pre id="output">(nothing yet)</pre>
+<script>
+(function () {
+  const form = document.getElementById("echoForm");
+  const out = document.getElementById("output");
+  const resolvedEl = document.getElementById("resolvedEndpoint");
+
+  function endpointForLanguage(lang) {
+    switch (lang) {
+      case "perl":
+        return "/cgi-bin/perl-general-echo.pl";
+      case "python":
+        return "/cgi-bin/python/python-general-echo.py";
+      case "c":
+        return "/cgi-bin/c/c-general-echo";
+      case "jsp":
+        return "/jsp/jsp-general-echo";
+      default:
+        throw new Error("Unknown language: " + lang);
+    }
+  }
+
+  function buildUrlWithQuery(endpoint, dataObj) {
+    const u = new URL(endpoint, window.location.origin);
+    for (const [k, v] of Object.entries(dataObj)) {
+      u.searchParams.set(k, v);
+    }
+    return u.toString();
+  }
+
+  function updateResolvedEndpoint() {
+    try {
+      const lang = document.getElementById("language").value;
+      const ep = endpointForLanguage(lang);
+      resolvedEl.textContent = ep;
+    } catch (e) {
+      resolvedEl.textContent = String(e);
+    }
+  }
+
+  document.getElementById("language").addEventListener("change", updateResolvedEndpoint);
+  updateResolvedEndpoint();
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const language = document.getElementById("language").value;
+    const method   = document.getElementById("method").value;
+    const encoding = document.getElementById("encoding").value;
+    const endpoint = endpointForLanguage(language);
+
+    const data = {
+      field1: document.getElementById("field1").value,
+      field2: document.getElementById("field2").value
+    };
+
+    // Enforce sane combinations:
+    // - GET has no body -> always use query string (urlencoded style)
+    // - JSON needs a body -> if user picked GET+JSON, switch to POST
+    let actualMethod = method;
+    let actualEncoding = encoding;
+
+    if (actualEncoding === "application/json" && actualMethod === "GET") {
+      actualMethod = "POST";
+    }
+    if (actualMethod === "GET") {
+      actualEncoding = "application/x-www-form-urlencoded";
+    }
+
+    const opts = {
+      method: actualMethod,
+      headers: {},
+      credentials: "include"
+    };
+
+    try {
+      out.textContent = `Sending ${opts.method} to ${endpoint}\nEncoding: ${actualEncoding}\n\n`;
+
+      // GET: send everything in query string
+      if (opts.method === "GET") {
+        const url = buildUrlWithQuery(endpoint, data);
+        const res = await fetch(url, opts);
+        out.textContent += await res.text();
+        return;
+      }
+
+      // Non-GET: send body based on encoding
+      if (actualEncoding === "application/json") {
+        opts.headers["Content-Type"] = "application/json";
+        opts.body = JSON.stringify(data);
+      } else {
+        opts.headers["Content-Type"] = "application/x-www-form-urlencoded";
+        opts.body = new URLSearchParams(data).toString();
+      }
+
+      const res = await fetch(endpoint, opts);
+      out.textContent += await res.text();
+    } catch (err) {
+      out.textContent = "Error:\n" + (err && err.stack ? err.stack : String(err));
+    }
+  });
+})();
+</script>
+</body>
+</html>

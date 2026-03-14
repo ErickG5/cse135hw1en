@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Perl Session Demo</title>
+</head>
+<body>
+  <h1>Perl Session Demo</h1>
+
+  <form action="/cgi-bin/perl-sessions-1.pl" method="post">
+    <label>
+      Name:
+      <input type="text" name="name" required>
+    </label>
+    <br><br>
+
+    <label>
+      Favorite Color:
+      <input type="text" name="color" required>
+    </label>
+    <br><br>
+
+    <button type="submit">Save Session</button>
+  </form>
+
+  <hr>
+
+  <ul>
+    <li><a href="/cgi-bin/perl-sessions-2.pl">View Session Data</a></li>
+    <li><a href="/cgi-bin/perl-destroy-session.pl">Clear Session</a></li>
+  </ul>
+</body>
+</html>
