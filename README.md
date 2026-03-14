@@ -122,6 +122,7 @@ Password: cse135
 ### Links
 - **GitHub Repository**: [https://github.com/ErickG5/cse135hw1en.git](https://github.com/ErickG5/cse135hw1en.git)
 - **Deployed Application**: [https://reporting.cse135hw1en.site/login.php](https://reporting.cse135hw1en.site/login.php)
+- **Collector Endpoint**: [https://collector.cse135hw1en.site/endpoint.js](https://collector.cse135hw1en.site/endpoint.js)
 
 ### Tech Stack
 - Frontend: PHP, serverside rendering
